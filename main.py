@@ -52,7 +52,7 @@ class Main(tk.Frame):
             [self.tree.insert('', 'end', values=row) for row in self.all_products ]
         except:
             logging.error('something wrong in view_records!!!')
-        # self.cbox_all_spec['values'] = list(self.all_specialties.values())
+ 
 
     def search(self):
 
@@ -87,37 +87,9 @@ class Main(tk.Frame):
             logging.error('Error in delete!')
 
 
-    # def delete_records(self):
-    #     for selection_item in self.tree.selection():
-    #         db.deliting([self.tree.set(selection_item, '#1')])
-    #     self.view_records()
-    #
-    # def open_adding_dialog(self):
-    #     AddingWindow(root, app)
-    #
-    # def open_editing_dialog(self):
-    #     try:
-    #         EditingWindow(root, app, self.tree.set(self.tree.selection()[0], '#1'))
-    #     except:
-    #         logging.exception('Item not selected')
-    #
-    # def open_add_spec_dialog(self):
-    #     AddSpecWindow(root, app)
-
-def create_record():
-    moloko = Product(name='Молоко', category_id=1)
-    moloko.products = [
-        Warehouse(date='11/12/19', count=5),
-        Warehouse(date='12/12/19', count=14),
-    ]
-    session.add(moloko)
-    session.commit()
-
-
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s : %(levelname)s : %(message)s')
-    # create_record()
     root = tk.Tk()
     app = Main(root)
     app.pack()
