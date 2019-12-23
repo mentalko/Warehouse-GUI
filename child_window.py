@@ -74,36 +74,6 @@ class AddingWindow(tk.Toplevel):
         self.destroy()
         self.app.view_records()
 
-
-    # def add_records(self):
-    #     session.query()
-    #     self.view.view_records()
-    #     self.destroy()
-    #
-    # def update_records(self):
-    #     db.update_after_editing(self.selected_id, self.fields_values())
-    #     self.view.view_records()
-    #     self.destroy()
-    #
-    # def get_current_specialty(self, match_str):
-    #     self.all_specialties = dict(db.c.execute('select  id, SpecName from specialty').fetchall())
-    #     #print(self.all_specialties)
-    #     print(match_str)
-    #     try:
-    #         return self.cbox_spec['values'].index(self.all_specialties.get(match_str))
-    #     except:
-    #         self.rb_onbase_value.set(11)
-    #         self.click_radiobtn()
-    #         return self.cbox_spec['values'].index(self.all_specialties.get(match_str))
-    #
-    # def get_spec_id_from_cbox(self, selected_str):
-    #     for k, v in db.return_rb_dictionary(self.rb_onbase_value.get()).items():
-    #         if v == selected_str:
-    #             return k
-    #
-    # # endregion
-
-
 class EditingWindow(AddingWindow):
     def __init__(self, root, app):
         super().__init__(root, app )
@@ -132,7 +102,6 @@ class EditingWindow(AddingWindow):
         self.e_count.insert(0, self.dataset[4])
         self.d_date.set_date(self.dataset[5])
         self.d_date.config(date_pattern='DD.MM.YYYY')
-        # self.cbox_gender.current(list_of_genders.index(self.dataset[12])) #?
 
     def update(self):
         wh = session.query(Warehouse).filter_by(id=self.selected_id).first()
@@ -141,35 +110,3 @@ class EditingWindow(AddingWindow):
         session.delete(wh)
         session.delete(prod)
         AddingWindow.add(self)
-
-
-
-
-
-
-"""
-        # self.b_add_or_edit = tk.Button(self, text='''Добавить''')
-        # self.b_add_or_edit.place(relx=0.365, rely=0.911, height=24, width=63)
-        # self.b_cancel = tk.Button(self, text='''Дать пинка!''')
-        # self.b_cancel.place(relx=0.501, rely=0.911, height=24, width=75)
-
-        # def __init__(self, root):
-    #     self.title_value = StringVar()
-    #     self.title_value.set("Добавление товара")
-    #     super().__init__(root)
-    #     self.init_child()
-    #
-    # def init_child(self):
-    #     self.title(self.title_value.get())
-    #     self.geometry("739x450+339+86")
-    #     self.resizable(False, False)
-
-        # self.date_of_registration = DateEntry(self, date_pattern='DD.MM.YYYY', width=12)
-        # self.date_of_registration.place(relx=0.162, rely=0.022, relheight=0.047, relwidth=0.217)
-        # # self.e_SI = tk.Entry(self)
-        # # self.e_SI.place(relx=0.145, rely=0.24, height=20, relwidth=0.238)
-
-      # self.date_of_birth = DateEntry(self.tkTab_1, date_pattern='DD.MM.YYYY', width=12, foreground='black')
-        # self.date_of_birth.place(relx=0.667, rely=0.25, height=20, relwidth=0.248)
-        # self.date_of_birth.configure(background="green")
-"""
